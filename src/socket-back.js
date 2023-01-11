@@ -1,3 +1,4 @@
+import { atualizaDocumento, encontrarDocumento } from "./documentosDB.js"
 import io from "./index.js"
 
 const documentos = [
@@ -18,10 +19,12 @@ const documentos = [
 io.on("connection", (socket) => {
     console.log("Um cliente se conectou! ID: ", socket.id)
     
-    socket.on('selecionar_documento', (nomeDocumento, devolverTexto) =>{
+    socket.on('selecionar_documento', async (nomeDocumento, devolverTexto) =>{
         socket.join(nomeDocumento)
 
-        const documento = encontrarDocumento(nomeDocumento)
+        const documento = await encontrarDocumento(nomeDocumento)
+
+        console.log(documento)
         
         if(documento) {
 
@@ -31,11 +34,11 @@ io.on("connection", (socket) => {
 
     })
 
-    socket.on('texto_editor', ({texto, nomeDocumento}) => {        
-        const documento = encontrarDocumento(nomeDocumento)
+    socket.on('texto_editor', async ({texto, nomeDocumento}) => {        
+        const atualizacao = await atualizaDocumento(nomeDocumento, texto)
+       
 
-        if(documento){
-            documento.texto = texto
+        if(atualizacao.modifiedCount){           
             socket.to(nomeDocumento).emit('texto_editor_clientes', texto)
         }
 
@@ -43,10 +46,3 @@ io.on("connection", (socket) => {
 
 })
 
-function encontrarDocumento(nome) {
-    const documento = documentos.find((documento) =>{
-        return documento.nome === nome
-    })
-
-    return documento
-}
