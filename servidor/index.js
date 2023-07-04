@@ -5,12 +5,12 @@ import http from "http";
 import { Server } from "socket.io";
 
 
-import "./DBconnect.js"
+import "./db/DBconnect.js"
 
 
 
 const app = Express()
-const porta = process.env.porta || 50000
+const porta = process.env.porta || 3000
 
 const caminhoAtual = url.fileURLToPath(import.meta.url)
 const diretorioPublico = path.join(caminhoAtual, "../..", "public")

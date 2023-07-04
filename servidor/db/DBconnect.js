@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb";
 
-const cliente = new MongoClient("mongodb+srv://root:6040@cluster0.yu1rqqd.mongodb.net/?retryWrites=true&w=majority")
+const cliente = new MongoClient("mongodb+srv://root:6040@main.hlxq1lq.mongodb.net/?retryWrites=true&w=majority")
 
 let documentosColection
 

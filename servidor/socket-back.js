@@ -1,4 +1,4 @@
-import { adicionarDocumento, atualizaDocumento, encontrarDocumento, excluirDocumento, obterDocumentos } from "./documentosDB.js"
+import { adicionarDocumento, atualizaDocumento, encontrarDocumento, excluirDocumento, obterDocumentos } from "./db/documentosDB.js"
 import io from "./index.js"
 
 const documentos = [
