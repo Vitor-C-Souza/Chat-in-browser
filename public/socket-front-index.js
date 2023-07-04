@@ -1,5 +1,6 @@
 import { inserirLinkDocumento, removerLinkDocumento } from "./index.js";
 
+// eslint-disable-next-line no-undef
 const socket = io();
 
 socket.emit("obter_documentos", (documentos) => {

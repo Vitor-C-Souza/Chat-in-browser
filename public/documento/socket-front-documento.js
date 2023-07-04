@@ -1,5 +1,6 @@
 import { alertarERedirecionar, atualizaTextoEditor } from "./documento.js";
 
+// eslint-disable-next-line no-undef
 const socket = io();
 
 function selecionarDocumento(nome) {
