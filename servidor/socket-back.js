@@ -1,6 +1,7 @@
 import io from "./index.js";
-import registrarEventosDocumento from "./registrarEventos/registrarEventosDocumento.js";
-import registrarEventosInicio from "./registrarEventos/registrarEventosInicio.js";
+import registrarEventosCadastro from "./registrarEventos/Cadastro.js";
+import registrarEventosDocumento from "./registrarEventos/Documento.js";
+import registrarEventosInicio from "./registrarEventos/Inicio.js";
 
 // eslint-disable-next-line no-unused-vars
 const documentos = [
@@ -21,4 +22,5 @@ const documentos = [
 io.on("connection", (socket) => {
   registrarEventosInicio(socket, io);
   registrarEventosDocumento(socket, io);
+  registrarEventosCadastro(socket, io);
 });
