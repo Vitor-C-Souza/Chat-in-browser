@@ -5,26 +5,19 @@ import registrarEventosCadastro from "./registrarEventos/Cadastro.js";
 import registrarEventosDocumento from "./registrarEventos/Documento.js";
 import registrarEventosInicio from "./registrarEventos/Inicio.js";
 import registrarEventosLogin from "./registrarEventos/login.js";
+import autorizarUsuario from "./middlewares/autorizarUsuario.js";
 
-// eslint-disable-next-line no-unused-vars
-const documentos = [
-  {
-    nome: "JavaScript",
-    texto: "texto de javascript...",
-  },
-  {
-    nome: "Node",
-    texto: "texto de node...",
-  },
-  {
-    nome: "Socket.io",
-    texto: "texto de socket.io...",
-  },
-];
+const nspUsuarios = io.of("/usuarios");
 
-io.on("connection", (socket) => {
+nspUsuarios.use(autorizarUsuario);
+
+nspUsuarios.on("connection", (socket) => {
   registrarEventosInicio(socket, io);
   registrarEventosDocumento(socket, io);
+
+});
+
+io.of("/").on("connection", (socket) => {
   registrarEventosCadastro(socket, io);
   registrarEventosLogin(socket, io);
 });

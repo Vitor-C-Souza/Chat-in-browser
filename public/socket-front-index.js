@@ -1,7 +1,12 @@
 import { inserirLinkDocumento, removerLinkDocumento } from "./index.js";
+import { obterCookie } from "./utils/cookies.js";
 
 // eslint-disable-next-line no-undef
-const socket = io();
+const socket = io("/usuarios", {
+  auth: {
+    token: obterCookie("tokenJwt"),
+  },
+});
 
 socket.emit("obter_documentos", (documentos) => {
   documentos.forEach((documento) => {
@@ -24,5 +29,12 @@ socket.on("documento_existente", (nome) => {
 socket.on("excluir_documento_sucesso", (nome) => {
   removerLinkDocumento(nome);
 });
+
+socket.on("connect_error", (erro) => {
+  alert(erro);
+  window.location.href = "/login/index.html";
+});
+
+
 
 export { emitirAdicionarDocumento };
