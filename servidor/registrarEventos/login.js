@@ -1,4 +1,4 @@
-import { encontrarUsuario } from "../db/usuariosDB.js";
+import { encontrarUsuario } from "../db/usuariosDb.js";
 import autenticarUsuario from "../utils/autenticarUsuario.js";
 import gerarJwt from "../utils/gerarJwt.js";
 
@@ -8,7 +8,7 @@ function registrarEventosLogin(socket, io) {
 
     if (usuario) {
       const autenticado = autenticarUsuario(senha, usuario);
-  
+
       if (autenticado) {
         const tokenJwt = gerarJwt({ nomeUsuario: nome });
 

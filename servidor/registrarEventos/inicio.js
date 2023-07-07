@@ -2,7 +2,7 @@ import {
   adicionarDocumento,
   encontrarDocumento,
   obterDocumentos,
-} from "../db/documentosDB.js";
+} from "../db/documentosDb.js";
 
 function registrarEventosInicio(socket, io) {
   socket.on("obter_documentos", async (devolverDocumentos) => {

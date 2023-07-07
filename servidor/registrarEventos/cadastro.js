@@ -1,4 +1,4 @@
-import { cadastrarUsuario, encontrarUsuario } from "../db/usuariosDB.js";
+import { cadastrarUsuario, encontrarUsuario } from "../db/usuariosDb.js";
 
 // eslint-disable-next-line no-unused-vars
 function registrarEventosCadastro(socket, io) {

@@ -9,8 +9,8 @@ function obterCookie(chave) {
     ?.split("=")[1];
 }
 
-function removerCookie(chave){
+function removerCookie(chave) {
   document.cookie = `${chave}=; expires=Thu, 01 Jan 1970 00:00:00`;
 }
 
-export { definirCookie, obterCookie, removerCookie};
+export { definirCookie, obterCookie, removerCookie };
