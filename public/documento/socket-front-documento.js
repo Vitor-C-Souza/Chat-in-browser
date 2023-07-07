@@ -6,6 +6,7 @@ import {
   tratarAutorizacaoSucesso,
 } from "./documento.js";
 
+// eslint-disable-next-line no-undef
 const socket = io("/usuarios", {
   auth: {
     token: obterCookie("tokenJwt"),
@@ -24,6 +25,11 @@ function selecionarDocumento(dadosEntrada) {
     atualizaTextoEditor(texto);
   });
 }
+
+socket.on("usuario_ja_no_documento", () => {
+  alert("Documento já aberto em outra página.");
+  window.location.href = "/";
+});
 
 socket.on("usuarios_no_documento", atualizarInterfaceUsuarios);
 
